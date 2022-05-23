@@ -1,9 +1,14 @@
 import { Container } from "react-bootstrap";
+import { MessageBox } from "./MessageBox";
+import { Message as MessageType } from "../types/message"
 
-export const MessageField = () => {
-  return (
-    <Container className="border border-light">
-      <p className="text-start">Example message</p>
-    </Container>
-  );
-};
+type MessageFieldProps = {
+  messages: MessageType [],
+  userId: string
+}
+
+export const MessageField = ({ messages, userId } : MessageFieldProps) => (
+  <Container className="border border-light">
+    {messages.map((message, id) => <MessageBox key={id} message={message} userId={userId} />)}
+  </Container>
+);
